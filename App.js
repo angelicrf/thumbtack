@@ -63,10 +63,10 @@ const App = () => {
     var db = new Datastore({
         filename: "locations", autoload: true });
     db.loadDatabase();
-    //db.insert({ a: 5 }, function (err, newDocs) {
-    //    console.log(newDocs);
-    //    // newDocs is an array with these documents, augmented with their _id
-    //});
+    db.insert({ a: 5 }, function (err, newDocs) {
+        console.log(newDocs);
+        // newDocs is an array with these documents, augmented with their _id
+    });
     //db.update({ a: 5 }, { a: 65 }, {}, function (err, numReplaced) {
     //    console.log(numReplaced);
         
