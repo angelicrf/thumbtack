@@ -13,9 +13,10 @@ import {
 
 import { NavigationContainer } from '@react-navigation/native';
 //import { createStackNavigator } from '@react-navigation/stack';
-
+import Datastore from './node_modules/react-native-local-mongodb';
 //const Stack = createStackNavigator();
 function CustomDrawerContent(props) {
+
     return (
         <DrawerContentScrollView {...props}>
             <DrawerItemList {...props} />
@@ -58,6 +59,30 @@ function MyDrawer() {
     );
 }
 const App = () => {
+ 
+    var db = new Datastore({
+        filename: "locations", autoload: true });
+    db.loadDatabase();
+    //db.insert({ a: 5 }, function (err, newDocs) {
+    //    console.log(newDocs);
+    //    // newDocs is an array with these documents, augmented with their _id
+    //});
+    //db.update({ a: 5 }, { a: 65 }, {}, function (err, numReplaced) {
+    //    console.log(numReplaced);
+        
+    //});
+    db.findOne({ a: 5 }, function (err, doc) {
+        console.log(doc);
+        // doc is the document Mars
+        // If no document is found, doc is null
+    });
+    //db.remove({ a: 65 }, { multi: true }, function (err, numRemoved) {
+    //    console.log(numRemoved);
+    //    // All planets from the solar system were removed
+    //});
+    //db.find({}).exec(function (err, docs) {
+    //    console.log(docs);
+    //});
     return (
 
         //<NavigationContainer style={styles.container}>
