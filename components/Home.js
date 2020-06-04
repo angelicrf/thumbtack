@@ -6,7 +6,7 @@ import MapView from 'react-native-maps';
 import Geolocation from '../node_modules/react-native-geolocation-service';
 //import { storeData } from './DataStorage';
 
-const Home = ({ navigation }) => {
+const Home = () => {
    const [latitude, setLatitude] = useState(0);
    const [longitude, setLongitude] = useState(0);
 
@@ -37,9 +37,6 @@ const Home = ({ navigation }) => {
                 <View>
                     <Icon.Button name="home" size={20}>
                      <Text style={styles.displayText}>Home</Text></Icon.Button>
-                </View>
-                <View>
-                <Button title="Menu" onPress={() => navigation.openDrawer()} />
                 </View>
                 <View style={styles.container}>
 
