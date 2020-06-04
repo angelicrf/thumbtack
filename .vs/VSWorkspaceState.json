@@ -1,9 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\assets",
     "\\components"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\components\\DrawerApp.js",
   "PreviewInSolutionExplorer": false
 }
