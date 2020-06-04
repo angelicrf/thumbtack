@@ -1,12 +1,8 @@
 {
   "ExpandedNodes": [
     "",
-    "\\android\\app\\src",
-    "\\android\\app\\src\\main",
-    "\\android\\app\\src\\main\\java",
-    "\\android\\app\\src\\main\\java\\com",
-    "\\android\\app\\src\\main\\java\\com\\navigators"
+    "\\components"
   ],
-  "SelectedNode": "\\package.json",
+  "SelectedNode": "\\components\\DrawerApp.js",
   "PreviewInSolutionExplorer": false
 }

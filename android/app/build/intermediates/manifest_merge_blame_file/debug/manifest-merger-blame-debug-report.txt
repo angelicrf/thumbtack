@@ -14,96 +14,102 @@
 12    <uses-permission android:name="android.permission.INTERNET" />
 12-->D:\navigators\android\app\src\main\AndroidManifest.xml:4:5-67
 12-->D:\navigators\android\app\src\main\AndroidManifest.xml:4:22-64
-13    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
-13-->[com.facebook.flipper:flipper:0.33.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\1866ea1a2f6d91d9cf91f8f562b983ff\jetified-flipper-0.33.1\AndroidManifest.xml:16:5-76
-13-->[com.facebook.flipper:flipper:0.33.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\1866ea1a2f6d91d9cf91f8f562b983ff\jetified-flipper-0.33.1\AndroidManifest.xml:16:22-73
-14    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" /> <!-- Include required permissions for Google Maps API to run. -->
-14-->[:react-native-maps] D:\navigators\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:5-81
-14-->[:react-native-maps] D:\navigators\node_modules\react-native-maps\lib\android\build\intermediates\library_manifest\debug\AndroidManifest.xml:10:22-78
-15    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
-15-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
-15-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:23:22-76
-16
-17    <uses-feature
-17-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
-18        android:glEsVersion="0x00020000"
-18-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
-19        android:required="true" />
-19-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
-20
-21    <application
-21-->D:\navigators\android\app\src\main\AndroidManifest.xml:6:5-31:19
-22        android:name="com.navigators.MainApplication"
-22-->D:\navigators\android\app\src\main\AndroidManifest.xml:7:7-38
-23        android:allowBackup="false"
-23-->D:\navigators\android\app\src\main\AndroidManifest.xml:11:7-34
-24        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
-24-->[androidx.core:core:1.1.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4f509a65121478d6153615d7ef5b7c5f\core-1.1.0\AndroidManifest.xml:24:18-86
-25        android:debuggable="true"
-26        android:icon="@mipmap/ic_launcher"
-26-->D:\navigators\android\app\src\main\AndroidManifest.xml:9:7-41
-27        android:label="@string/app_name"
-27-->D:\navigators\android\app\src\main\AndroidManifest.xml:8:7-39
-28        android:roundIcon="@mipmap/ic_launcher_round"
-28-->D:\navigators\android\app\src\main\AndroidManifest.xml:10:7-52
-29        android:theme="@style/AppTheme"
-29-->D:\navigators\android\app\src\main\AndroidManifest.xml:12:7-38
-30        android:usesCleartextTraffic="true" >
-30-->D:\navigators\android\app\src\debug\AndroidManifest.xml:7:18-53
-31        <meta-data
-31-->D:\navigators\android\app\src\main\AndroidManifest.xml:13:7-15:64
-32            android:name="com.google.android.geo.API_KEY"
-32-->D:\navigators\android\app\src\main\AndroidManifest.xml:14:7-52
-33            android:value="AIzaSyBYnmqLuqgIte1mllVTv98yJLdbUhzQR0g" /> <!-- You will also only need to add this uses-libray tag -->
-33-->D:\navigators\android\app\src\main\AndroidManifest.xml:15:7-62
-34        <uses-library
-34-->D:\navigators\android\app\src\main\AndroidManifest.xml:18:7-85
-35            android:name="org.apache.http.legacy"
-35-->D:\navigators\android\app\src\main\AndroidManifest.xml:18:21-58
-36            android:required="false" />
-36-->D:\navigators\android\app\src\main\AndroidManifest.xml:18:59-83
-37
-38        <activity
-38-->D:\navigators\android\app\src\main\AndroidManifest.xml:19:7-29:18
-39            android:name="com.navigators.MainActivity"
-39-->D:\navigators\android\app\src\main\AndroidManifest.xml:20:9-37
-40            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
-40-->D:\navigators\android\app\src\main\AndroidManifest.xml:22:9-86
-41            android:label="@string/app_name"
-41-->D:\navigators\android\app\src\main\AndroidManifest.xml:21:9-41
-42            android:launchMode="singleTask"
-42-->D:\navigators\android\app\src\main\AndroidManifest.xml:23:9-40
-43            android:windowSoftInputMode="adjustResize" >
-43-->D:\navigators\android\app\src\main\AndroidManifest.xml:24:9-51
-44            <intent-filter>
-44-->D:\navigators\android\app\src\main\AndroidManifest.xml:25:9-28:25
-45                <action android:name="android.intent.action.MAIN" />
-45-->D:\navigators\android\app\src\main\AndroidManifest.xml:26:13-65
-45-->D:\navigators\android\app\src\main\AndroidManifest.xml:26:21-62
-46
-47                <category android:name="android.intent.category.LAUNCHER" />
-47-->D:\navigators\android\app\src\main\AndroidManifest.xml:27:13-73
-47-->D:\navigators\android\app\src\main\AndroidManifest.xml:27:23-70
-48            </intent-filter>
-49        </activity>
-50        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
-50-->D:\navigators\android\app\src\main\AndroidManifest.xml:30:7-84
-50-->D:\navigators\android\app\src\main\AndroidManifest.xml:30:17-81
-51        <activity
-51-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
-52            android:name="com.google.android.gms.common.api.GoogleApiActivity"
-52-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
-53            android:exported="false"
-53-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
-54            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
-54-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
-55
-56        <meta-data
-56-->[com.google.maps.android:android-maps-utils:0.5] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcf7254683ef710c8fdffb0ac90e1d1b\jetified-android-maps-utils-0.5\AndroidManifest.xml:8:9-10:69
-57            android:name="com.google.android.gms.version"
-57-->[com.google.maps.android:android-maps-utils:0.5] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcf7254683ef710c8fdffb0ac90e1d1b\jetified-android-maps-utils-0.5\AndroidManifest.xml:9:13-58
-58            android:value="@integer/google_play_services_version" />
-58-->[com.google.maps.android:android-maps-utils:0.5] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcf7254683ef710c8fdffb0ac90e1d1b\jetified-android-maps-utils-0.5\AndroidManifest.xml:10:13-66
-59    </application>
-60
-61</manifest>
+13    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+13-->D:\navigators\android\app\src\main\AndroidManifest.xml:5:5-81
+13-->D:\navigators\android\app\src\main\AndroidManifest.xml:5:22-78
+14    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+14-->D:\navigators\android\app\src\main\AndroidManifest.xml:6:5-79
+14-->D:\navigators\android\app\src\main\AndroidManifest.xml:6:22-76
+15    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS" />
+15-->D:\navigators\android\app\src\main\AndroidManifest.xml:7:5-89
+15-->D:\navigators\android\app\src\main\AndroidManifest.xml:7:22-86
+16    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" /> <!-- Include required permissions for Google Maps API to run. -->
+16-->[com.facebook.flipper:flipper:0.33.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\1866ea1a2f6d91d9cf91f8f562b983ff\jetified-flipper-0.33.1\AndroidManifest.xml:16:5-76
+16-->[com.facebook.flipper:flipper:0.33.1] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\1866ea1a2f6d91d9cf91f8f562b983ff\jetified-flipper-0.33.1\AndroidManifest.xml:16:22-73
+17    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+17-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:23:5-79
+17-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:23:22-76
+18
+19    <uses-feature
+19-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:26:5-28:35
+20        android:glEsVersion="0x00020000"
+20-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:27:9-41
+21        android:required="true" />
+21-->[com.google.android.gms:play-services-maps:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\dcb0caa0b7590c92c93c5bf3cc09a745\play-services-maps-17.0.0\AndroidManifest.xml:28:9-32
+22
+23    <application
+23-->D:\navigators\android\app\src\main\AndroidManifest.xml:9:5-34:19
+24        android:name="com.navigators.MainApplication"
+24-->D:\navigators\android\app\src\main\AndroidManifest.xml:10:7-38
+25        android:allowBackup="false"
+25-->D:\navigators\android\app\src\main\AndroidManifest.xml:14:7-34
+26        android:appComponentFactory="androidx.core.app.CoreComponentFactory"
+26-->[androidx.core:core:1.1.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\4f509a65121478d6153615d7ef5b7c5f\core-1.1.0\AndroidManifest.xml:24:18-86
+27        android:debuggable="true"
+28        android:icon="@mipmap/ic_launcher"
+28-->D:\navigators\android\app\src\main\AndroidManifest.xml:12:7-41
+29        android:label="@string/app_name"
+29-->D:\navigators\android\app\src\main\AndroidManifest.xml:11:7-39
+30        android:roundIcon="@mipmap/ic_launcher_round"
+30-->D:\navigators\android\app\src\main\AndroidManifest.xml:13:7-52
+31        android:theme="@style/AppTheme"
+31-->D:\navigators\android\app\src\main\AndroidManifest.xml:15:7-38
+32        android:usesCleartextTraffic="true" >
+32-->D:\navigators\android\app\src\debug\AndroidManifest.xml:7:18-53
+33        <meta-data
+33-->D:\navigators\android\app\src\main\AndroidManifest.xml:16:7-18:64
+34            android:name="com.google.android.geo.API_KEY"
+34-->D:\navigators\android\app\src\main\AndroidManifest.xml:17:7-52
+35            android:value="AIzaSyBYnmqLuqgIte1mllVTv98yJLdbUhzQR0g" /> <!-- You will also only need to add this uses-libray tag -->
+35-->D:\navigators\android\app\src\main\AndroidManifest.xml:18:7-62
+36        <uses-library
+36-->D:\navigators\android\app\src\main\AndroidManifest.xml:21:7-85
+37            android:name="org.apache.http.legacy"
+37-->D:\navigators\android\app\src\main\AndroidManifest.xml:21:21-58
+38            android:required="false" />
+38-->D:\navigators\android\app\src\main\AndroidManifest.xml:21:59-83
+39
+40        <activity
+40-->D:\navigators\android\app\src\main\AndroidManifest.xml:22:7-32:18
+41            android:name="com.navigators.MainActivity"
+41-->D:\navigators\android\app\src\main\AndroidManifest.xml:23:9-37
+42            android:configChanges="keyboard|keyboardHidden|orientation|screenSize|uiMode"
+42-->D:\navigators\android\app\src\main\AndroidManifest.xml:25:9-86
+43            android:label="@string/app_name"
+43-->D:\navigators\android\app\src\main\AndroidManifest.xml:24:9-41
+44            android:launchMode="singleTask"
+44-->D:\navigators\android\app\src\main\AndroidManifest.xml:26:9-40
+45            android:windowSoftInputMode="adjustResize" >
+45-->D:\navigators\android\app\src\main\AndroidManifest.xml:27:9-51
+46            <intent-filter>
+46-->D:\navigators\android\app\src\main\AndroidManifest.xml:28:9-31:25
+47                <action android:name="android.intent.action.MAIN" />
+47-->D:\navigators\android\app\src\main\AndroidManifest.xml:29:13-65
+47-->D:\navigators\android\app\src\main\AndroidManifest.xml:29:21-62
+48
+49                <category android:name="android.intent.category.LAUNCHER" />
+49-->D:\navigators\android\app\src\main\AndroidManifest.xml:30:13-73
+49-->D:\navigators\android\app\src\main\AndroidManifest.xml:30:23-70
+50            </intent-filter>
+51        </activity>
+52        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity" />
+52-->D:\navigators\android\app\src\main\AndroidManifest.xml:33:7-84
+52-->D:\navigators\android\app\src\main\AndroidManifest.xml:33:17-81
+53        <activity
+53-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:23:9-26:75
+54            android:name="com.google.android.gms.common.api.GoogleApiActivity"
+54-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:24:13-79
+55            android:exported="false"
+55-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:25:13-37
+56            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+56-->[com.google.android.gms:play-services-base:17.0.0] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\6d45d9e0505112f0eec54f8796757f91\play-services-base-17.0.0\AndroidManifest.xml:26:13-72
+57
+58        <meta-data
+58-->[com.google.maps.android:android-maps-utils:0.5] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcf7254683ef710c8fdffb0ac90e1d1b\jetified-android-maps-utils-0.5\AndroidManifest.xml:8:9-10:69
+59            android:name="com.google.android.gms.version"
+59-->[com.google.maps.android:android-maps-utils:0.5] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcf7254683ef710c8fdffb0ac90e1d1b\jetified-android-maps-utils-0.5\AndroidManifest.xml:9:13-58
+60            android:value="@integer/google_play_services_version" />
+60-->[com.google.maps.android:android-maps-utils:0.5] C:\Users\angel\.gradle\caches\transforms-2\files-2.1\fcf7254683ef710c8fdffb0ac90e1d1b\jetified-android-maps-utils-0.5\AndroidManifest.xml:10:13-66
+61    </application>
+62
+63</manifest>
