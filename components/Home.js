@@ -7,18 +7,18 @@ import Geolocation from '../node_modules/react-native-geolocation-service';
 //import { storeData } from './DataStorage';
 
 const Home = ({ navigation }) => {
-   const [latitude, setLatitude] = useState('');
-   const [longitude, setLongitude] = useState('');
+   const [latitude, setLatitude] = useState(0);
+   const [longitude, setLongitude] = useState(0);
 
 
     useEffect(() => console.log('value', latitude), [latitude, longitude]);
 
    const getGeolocation = () => {
         Geolocation.getCurrentPosition(
-            (position) => {                                  
+            (position) => {
                 setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);                                   
-            },    
+                setLongitude(position.coords.longitude);
+            },
             (error) => {
                 console.log(error.code, error.message);
             },
@@ -36,13 +36,13 @@ const Home = ({ navigation }) => {
             <View style={styles.container1}>
                 <View>
                     <Icon.Button name="home" size={20}>
-                     <Text style={styles.displayText}>Home</Text></Icon.Button>                 
+                     <Text style={styles.displayText}>Home</Text></Icon.Button>
                 </View>
                 <View>
                 <Button title="Menu" onPress={() => navigation.openDrawer()} />
                 </View>
                 <View style={styles.container}>
-                 
+
                     <MapView
                         provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                         style={styles.map}
@@ -63,8 +63,8 @@ const Home = ({ navigation }) => {
                         />
                     </MapView>
                 </View>
-            </View>    
-        );  
+            </View>
+        );
 };
 
 const styles = StyleSheet.create({
@@ -79,7 +79,7 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
     },
     container1: {
-       flex: 1,      
+       flex: 1,
     },
     homeName: {
         flexDirection: 'row',
