@@ -4,14 +4,26 @@ import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
 import Geolocation from '../node_modules/react-native-geolocation-service';
+import {getPermission} from "./Permission";
 //import { storeData } from './DataStorage';
 
 const Home = ({ navigation }) => {
+    const [permissionGranted, setPermissionGranted] = useState(false);
    const [latitude, setLatitude] = useState(0);
    const [longitude, setLongitude] = useState(0);
 
+    useEffect(() => {
+        // We need this boolean so useEffect doesn't infinitely loop.
+        if (!permissionGranted) {
+            getPermission().then(() => {
+                // Need dummy state reset to force re-render with the permission granted.
+                setPermissionGranted(true);
 
-    useEffect(() => console.log('value', latitude), [latitude, longitude]);
+                // Might be a possible edge case where this won't work properly if user explicitly
+                // blocks permission. We can close app if they block it.
+            });
+        }
+    }, []);
 
    const getGeolocation = () => {
         Geolocation.getCurrentPosition(
