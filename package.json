@@ -1,5 +1,5 @@
 {
-  "name": "navigators",
+  "name": "thumbtack",
   "version": "0.0.1",
   "private": true,
   "scripts": {
@@ -11,16 +11,30 @@
   },
   "dependencies": {
     "@react-native-community/masked-view": "^0.1.10",
-    "@react-navigation/drawer": "^5.8.0",
-    "@react-navigation/native": "^5.4.3",
-    "@react-navigation/stack": "^5.3.7",
+    "@react-navigation/material-bottom-tabs": "^5.2.9",
+    "@react-navigation/native": "^5.5.0",
+    "@react-navigation/stack": "^5.4.1",
+    "async": "^3.2.0",
+    "crypto": "^1.0.1",
+    "events": "^3.1.0",
+    "fs": "0.0.1-security",
+    "jetifier": "^1.6.5",
+    "mkdirp": "^1.0.4",
+    "nedb": "^1.8.0",
+    "path": "^0.12.7",
     "react": "16.11.0",
     "react-native": "0.62.2",
+    "react-native-geolocation-service": "^5.0.0",
     "react-native-gesture-handler": "^1.6.1",
+    "react-native-local-mongodb": "^2.2.9",
+    "react-native-maps": "0.27.1",
+    "react-native-paper": "^3.10.1",
     "react-native-reanimated": "^1.9.0",
-    "react-native-safe-area-context": "^2.0.0",
+    "react-native-safe-area-context": "^2.0.3",
     "react-native-screens": "^2.8.0",
-    "react-native-vector-icons": "^6.6.0"
+    "react-native-vector-icons": "^6.6.0",
+    "underscore": "^1.10.2",
+    "util": "^0.12.3"
   },
   "devDependencies": {
     "@babel/core": "^7.6.2",
