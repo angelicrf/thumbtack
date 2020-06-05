@@ -1,7 +1,10 @@
-import {View} from "react-native";
-import React, {Fragment, useState} from "react";
+import {ScrollView} from "react-native";
+import React, {useState} from "react";
 import styles from "../styles/global";
-import {Button, Divider, Text, TextInput, Title} from 'react-native-paper';
+import {Button, Divider} from 'react-native-paper';
+import CoordinateInfo from "./CoordinateInfo";
+import ApproximateAddress from "./ApproximateAddress";
+import LocationFormInputs from "./LocationFormInputs";
 
 const NewLocation = () => {
     const [dateLocated, setDateLocated] = useState('');
@@ -22,24 +25,24 @@ const NewLocation = () => {
     };
 
     return (
-        <View style={styles.container}>
-            <Button raised primary style={styles.button} onPress={getCoordinates}>Get Coordinates</Button>
-            <Text>Date & Time: {dateLocated === '' ? '---' : dateLocated}</Text>
-            <Text>Longitude: {longitude === 0 ? '---' : longitude}</Text>
-            <Text>Latitude: {latitude === 0 ? '---' : latitude}</Text>
+        <ScrollView style={styles.container}>
+            <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
+                    onPress={getCoordinates}>Get
+                Coordinates</Button>
+
+            <CoordinateInfo dateLocated={dateLocated} longitude={longitude} latitude={latitude}/>
 
             <Divider style={styles.divider}/>
 
-            <Title>Approximate Address:</Title>
-            <Text>{approxAddress}</Text>
-            <Fragment><Text>This is just a placeholder; replace this fragment with the map embed.</Text></Fragment>
+            <ApproximateAddress approxAddress={approxAddress}/>
 
             <Divider style={styles.divider}/>
 
-            <TextInput label='Location Name' style={styles.formControl} onChangeText={(val) => console.log(val)}/>
-            <TextInput label='Notes' multiline numberOfLines={6} style={styles.formControl} onChangeText={(val) => console.log(val)}/>
-            <Button raised primary style={styles.button} onPress={addLocation}>Add New Location</Button>
-        </View>
+            <LocationFormInputs/>
+
+            <Button raised primary mode='contained' icon='map-marker-plus' style={styles.submitButton}
+                    onPress={addLocation}>Add New Location</Button>
+        </ScrollView>
     );
 };
 

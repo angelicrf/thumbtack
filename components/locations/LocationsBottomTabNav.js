@@ -14,7 +14,7 @@ const LocationsBottomTabNav = () => {
                 component={Locations}
                 options={{
                     tabBarIcon: ({focused}) => (
-                        <Icon name="map-marker-multiple" color={focused ? "white" : "#999"} size={24}/>)
+                        <Icon name="map-marker-multiple" color={focused ? "white" : "#AAA"} size={24}/>)
                 }}
             />
 
@@ -23,7 +23,7 @@ const LocationsBottomTabNav = () => {
                 component={NewLocation}
                 options={{
                     tabBarIcon: ({focused}) => (
-                        <Icon name="map-marker-plus" color={focused ? "white" : "#999"} size={24}/>)
+                        <Icon name="map-marker-plus" color={focused ? "white" : "#AAA"} size={24}/>)
                 }}
             />
         </nav.Navigator>
