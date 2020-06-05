@@ -61,4 +61,4 @@ buck-out/
 # IDE
 .idea
 .vscode
-.vs/
+.vs
