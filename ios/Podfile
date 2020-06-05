@@ -87,6 +87,12 @@ target 'navigators' do
 
   pod 'RNScreens', :path => '../node_modules/react-native-screens'
 
+  pod 'RNCMaskedView', :path => '../node_modules/@react-native-community/masked-view'
+
+  pod 'react-native-geolocation-service', :path => '../node_modules/react-native-geolocation-service'
+
+  pod 'react-native-maps', :path => '../node_modules/react-native-maps'
+
   target 'navigatorsTests' do
     inherit! :complete
     # Pods for testing
