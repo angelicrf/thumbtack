@@ -14,11 +14,12 @@ const NewLocation = () => {
     const [latitude, setLatitude] = useState('');
     const [approxAddress, setApproxAddress] = useState('');
 
-    const getCoordinates = () => {
+    const getCoordinates = (pE) => {
         // Test values
         setDateLocated(new Date().toLocaleString());
-        setLongitude('-134.20000');
-        setLatitude('+48.61670');
+        setLongitude(pE.nativeEvent.coordinate.longitude); // '-134.20000'
+        setLatitude(pE.nativeEvent.coordinate.latitude); // '+48.61670'
+        console.log(pE)
         setApproxAddress('New Location test Address');
     };
 
@@ -35,9 +36,11 @@ const NewLocation = () => {
         console.log('Test output: new location added!');
     };
 
+    // markers={{longitude, latitude}}
+
     return (
         <ScrollView style={styles.container}>
-            <Map onPress></Map>
+            <Map onPressEvent={e => getCoordinates(e)} ></Map> 
             <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
                     onPress={getCoordinates}>Get
                 Coordinates</Button>
