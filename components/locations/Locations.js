@@ -9,22 +9,25 @@ import { Marker } from "react-native-maps";
 const Locations = ({ navigation }) => {
     const [markers, setMarkers] = useState(null);
 
-    const getLocations = () => {
-        var db = new Datastore({
+    const getLocations = async () => {
+        let db = new Datastore({
             filename: "../DataStore/locations.db", autoload: true
         });
 
+        let updatedMarkers;
+
         if (markers === null) {
-            db.find({}, function (err, docs) {
+            updatedMarkers = await db.find({}, function (err, docs) {
                 setMarkers(docs);
-                //console.log(docs);
-                console.log("Markers: " + markers);
             });
         }
+        return updatedMarkers;
+
     }
 
     useEffect(() => {
-       getLocations();
+        getLocations();
+        console.log("Markers: " + JSON.stringify(markers));
     }, [markers]);
 
     return (
@@ -36,18 +39,25 @@ const Locations = ({ navigation }) => {
             EditLocation.js
             </Button>
 
-            <Map>
-                {markers != null ? markers.map(marker => (
+            <Map markers={markers}>
+                {/* {markers != null ? markers.map(marker => (
                     <Marker
                         coordinate={{
-                            latitude: marker.latitude,
-                            longitude: marker.longitude,
-                            title: marker._id
+                            latitude: parseInt(marker.latitude),
+                            longitude: parseInt(marker.longitude)
                         }}
-                    >
-
-                    </Marker>
-                )): ''}
+                        title={marker._id}
+                        description={"category:Park"}
+                    />
+                )) : ''}
+                <Marker
+                    coordinate={{
+                        latitude: +47.61670,
+                        longitude: -122.20000
+                    }}
+                    title={"Medina park"}
+                    description={"category:Park"}
+                /> */}
             </Map>
         </ScrollView>
     );

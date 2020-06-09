@@ -10,16 +10,16 @@ import Map from '../Map';
 
 const NewLocation = () => {
     const [dateLocated, setDateLocated] = useState('');
-    const [longitude, setLongitude] = useState(0);
-    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState('');
+    const [latitude, setLatitude] = useState('');
     const [approxAddress, setApproxAddress] = useState('');
 
     const getCoordinates = () => {
         // Test values
         setDateLocated(new Date().toLocaleString());
-        setLongitude(-47.152);
-        setLatitude(+128.123);
-        setApproxAddress('123 ABC ST NE, City, State 12345');
+        setLongitude('-134.20000');
+        setLatitude('+48.61670');
+        setApproxAddress('New Location test Address');
     };
 
     const addLocation = () => {

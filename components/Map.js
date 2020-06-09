@@ -7,7 +7,7 @@ import Geolocation from 'react-native-geolocation-service';
 import { getPermission } from "./Permission";
 //import { storeData } from './DataStorage';
 
-const Map = () => {
+const Map = ({ markers }) => {
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
@@ -57,6 +57,33 @@ const Map = () => {
                         longitudeDelta: 0.05,
                     }}
                 >
+                    {markers != null ? markers.map(marker => (
+                        <Marker
+                            coordinate={{
+                                latitude: parseFloat(marker.latitude),
+                                longitude: parseFloat(marker.longitude)
+                            }}
+                            title={marker._id}
+                            description={marker.approxAddress}
+                        />
+                    )) :
+                    <Marker
+                            coordinate={{
+                                latitude: +47.61670,
+                                longitude: -122.20000
+                                        }}
+                            title={"This isn't working"}
+                            description={"category:You Messed up"}
+                        />
+                     }
+                    {/* <Marker
+                            coordinate={{
+                                latitude: +47.61670,
+                                longitude: -122.20000
+                                        }}
+                            title={"Medina park"}
+                            description={"category:Park"}
+                        /> */}
                 </MapView>
             </View>
         </View>

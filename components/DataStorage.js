@@ -1,5 +1,5 @@
 import Datastore from '../node_modules/react-native-local-mongodb';
-const path = require('path');
+// const path = require('path');
 
 //const showPath = path.dirname(require.resolve('DataStore/locations.db'));
 
@@ -23,7 +23,10 @@ export const storeData = (pData) => {
     //db.remove({ a: 65 }, { multi: true }, function (err, numRemoved) {
     //    console.log(numRemoved);
     //});
-    db.find({}).exec(function (err, docs) {
-       console.log(docs);
-    });
+    // db.find({}).exec(function (err, docs) {
+    //    console.log(docs);
+    // });
+
+    // db.remove({}, { multi: true }, function (err, numRemoved) {
+    // });
 };
