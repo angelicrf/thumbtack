@@ -1,16 +1,16 @@
-import React, { useState, useEffect  } from 'react';
+import React, { useState, useEffect } from 'react';
 import { StyleSheet, View, Text, Button } from 'react-native';
 import Icon from 'react-native-vector-icons/dist/FontAwesome';
 import { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
-import Geolocation from '../node_modules/react-native-geolocation-service';
-import {getPermission} from "./Permission";
+import Geolocation from 'react-native-geolocation-service';
+import { getPermission } from "./Permission";
 //import { storeData } from './DataStorage';
 
-const Home = () => {
+const Map = () => {
     const [permissionGranted, setPermissionGranted] = useState(false);
-   const [latitude, setLatitude] = useState(0);
-   const [longitude, setLongitude] = useState(0);
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
 
     useEffect(() => {
         // We need this boolean so useEffect doesn't infinitely loop.
@@ -25,7 +25,7 @@ const Home = () => {
         }
     }, []);
 
-   const getGeolocation = () => {
+    const getGeolocation = () => {
         Geolocation.getCurrentPosition(
             (position) => {
                 setLatitude(position.coords.latitude);
@@ -42,44 +42,31 @@ const Home = () => {
         );
     };
     getGeolocation();
-   // storeData();
+    // storeData();
 
-        return (
-            <View style={styles.container1}>
-                <View>
-                    <Icon.Button name="home" size={20}>
-                     <Text style={styles.displayText}>Home</Text></Icon.Button>
-                </View>
-                <View style={styles.container}>
-
-                    <MapView
-                        provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-                        style={styles.map}
-                        region={{
-                            latitude: latitude,
-                            longitude: longitude,
-                            latitudeDelta: 0.04,
-                            longitudeDelta: 0.05,
-                        }}
-                    >
-                        <Marker
-                            coordinate={{
-                                latitude: +47.61670,
-                                longitude: -122.20000
-                                        }}
-                            title={"Medina park"}
-                            description={"category:Park"}
-                        />
-                    </MapView>
-                </View>
+    return (
+        <View style={styles.container1}>
+            <View style={styles.container}>
+                <MapView
+                    provider={PROVIDER_GOOGLE} // remove if not using Google Maps
+                    style={styles.map}
+                    region={{
+                        latitude: latitude,
+                        longitude: longitude,
+                        latitudeDelta: 0.04,
+                        longitudeDelta: 0.05,
+                    }}
+                >
+                </MapView>
             </View>
-        );
+        </View>
+    );
 };
 
 const styles = StyleSheet.create({
     container: {
-        ...StyleSheet.absoluteFillObject,
-        height: 800,
+        //...StyleSheet.absoluteFillObject,
+        height: 400,
         width: 400,
         justifyContent: 'flex-end',
         alignItems: 'center',
@@ -88,7 +75,7 @@ const styles = StyleSheet.create({
         ...StyleSheet.absoluteFillObject,
     },
     container1: {
-       flex: 1,
+        flex: 1,
     },
     homeName: {
         flexDirection: 'row',
@@ -101,4 +88,4 @@ const styles = StyleSheet.create({
         fontSize: 20,
     }
 });
-export default Home;
+export default Map;

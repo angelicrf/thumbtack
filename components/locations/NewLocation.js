@@ -5,6 +5,8 @@ import {Button, Divider} from 'react-native-paper';
 import CoordinateInfo from "./CoordinateInfo";
 import ApproximateAddress from "./ApproximateAddress";
 import LocationFormInputs from "./LocationFormInputs";
+import { storeData } from '../DataStorage';
+import Map from '../Map';
 
 const NewLocation = () => {
     const [dateLocated, setDateLocated] = useState('');
@@ -21,11 +23,21 @@ const NewLocation = () => {
     };
 
     const addLocation = () => {
+
+        let locationObject = {
+            dateLocated,
+            longitude,
+            latitude,
+            approxAddress
+        }
+
+        storeData(locationObject);
         console.log('Test output: new location added!');
     };
 
     return (
         <ScrollView style={styles.container}>
+            <Map></Map>
             <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
                     onPress={getCoordinates}>Get
                 Coordinates</Button>

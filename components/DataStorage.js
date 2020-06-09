@@ -3,13 +3,13 @@ const path = require('path');
 
 //const showPath = path.dirname(require.resolve('DataStore/locations.db'));
 
-export const storeData = () => {
+export const storeData = (pData) => {
     var db = new Datastore({
         filename: "../DataStore/locations.db", autoload: true
     });
    
     //db.loadDatabase();
-    db.insert({ a: 5 }, function (err, newDocs) {
+    db.insert(pData, function (err, newDocs) {
         console.log(newDocs);
     });
     db.persistence.compactDatafile();
@@ -23,7 +23,7 @@ export const storeData = () => {
     //db.remove({ a: 65 }, { multi: true }, function (err, numRemoved) {
     //    console.log(numRemoved);
     //});
-    //db.find({}).exec(function (err, docs) {
-    //    console.log(docs);
-    //});
+    db.find({}).exec(function (err, docs) {
+       console.log(docs);
+    });
 };
