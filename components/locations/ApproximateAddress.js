@@ -10,8 +10,6 @@ const ApproximateAddress = ({approxAddress}) => {
             <Title><Icon name="map" size={22} style={styles.iconForRightbutton}/> Approximate Address:</Title>
 
             <Text>{approxAddress}</Text>
-
-            <Fragment><Text>This is just a placeholder; replace this fragment with the map embed.</Text></Fragment>
         </Fragment>
     );
 };

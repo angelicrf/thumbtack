@@ -37,7 +37,7 @@ const NewLocation = () => {
 
     return (
         <ScrollView style={styles.container}>
-            <Map></Map>
+            <Map onPress></Map>
             <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
                     onPress={getCoordinates}>Get
                 Coordinates</Button>

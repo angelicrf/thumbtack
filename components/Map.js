@@ -7,7 +7,7 @@ import Geolocation from 'react-native-geolocation-service';
 import { getPermission } from "./Permission";
 //import { storeData } from './DataStorage';
 
-const Map = ({ markers }) => {
+const Map = ({ markers, onPress }) => {
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
