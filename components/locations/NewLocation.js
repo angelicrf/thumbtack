@@ -10,18 +10,18 @@ import Map from '../Map';
 
 const NewLocation = () => {
     const [dateLocated, setDateLocated] = useState('');
-    const [longitude, setLongitude] = useState('');
-    const [latitude, setLatitude] = useState('');
+    const [longitude, setLongitude] = useState(-122.20000);
+    const [latitude, setLatitude] = useState(+47.61670);
     const [approxAddress, setApproxAddress] = useState('');
     const [marker, setMarker] = useState(null);
 
     const getCoordinates = (pE) => {
         setDateLocated(new Date().toLocaleString());
-        setLongitude(pE.nativeEvent.coordinate.longitude); 
-        setLatitude(pE.nativeEvent.coordinate.latitude); 
+        setLongitude(pE.nativeEvent.coordinate.longitude);
+        setLatitude(pE.nativeEvent.coordinate.latitude);
         setApproxAddress('New Location test Address');
-        // setState(prevState => ({ ...prevState, email }))
-        //setMarker(prevState => (...prevState, [{ longitude, latitude }]);
+        console.log(`Longitude: ${longitude} Latitude: ${latitude}`)
+        setMarker([{ longitude, latitude }]);
     };
 
     const addLocation = () => {
@@ -37,29 +37,19 @@ const NewLocation = () => {
         console.log('Test output: new location added!');
     };
 
-    // markers={marker != null ? marker : null}
+    useEffect(() => {
+        setMarker([{ longitude, latitude }]);
+    }, [longitude, latitude]);
 
     // TODO: Need to implement map focus on new marker when onPress event is called. 
     // see https://github.com/react-native-community/react-native-maps/blob/master/example/examples/FitToCoordinates.js
     // for possible solution.
 
-    // TODO: Need to implement marker to show on map when onPress event is called.
-
-    // useEffect(() => {
-    //     // We need this boolean so useEffect doesn't infinitely loop.
-    //     if (marker === null) {
-    //         setMarker([{ longitude, latitude }]);
-    //     }
-    // }, [marker]);
-
-    // markers={marker}
-
     return (
         <ScrollView style={styles.container}>
-            <Map onPressEvent={e => getCoordinates(e)} ></Map>
-            <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
-                onPress={getCoordinates}>Get
-                Coordinates</Button>
+            <Map markers={marker} onPressEvent={e => getCoordinates(e)} ></Map>
+
+            <Divider style={styles.divider} />
 
             <CoordinateInfo dateLocated={dateLocated} longitude={longitude} latitude={latitude} />
 
