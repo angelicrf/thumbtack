@@ -13,16 +13,28 @@ const NewLocation = () => {
     const [longitude, setLongitude] = useState(-122.20000);
     const [latitude, setLatitude] = useState(+47.61670);
     const [approxAddress, setApproxAddress] = useState('');
+    const [locationName, setLocationName] = useState('');
+    const [locationNotes, setLocationNotes] = useState('');
     const [marker, setMarker] = useState(null);
 
     const getCoordinates = (pE) => {
         setDateLocated(new Date().toLocaleString());
         setLongitude(pE.nativeEvent.coordinate.longitude);
         setLatitude(pE.nativeEvent.coordinate.latitude);
-        setApproxAddress('New Location test Address');
+        // setApproxAddress('New Location test Address');
         console.log(`Longitude: ${longitude} Latitude: ${latitude}`)
         setMarker([{ longitude, latitude }]);
     };
+
+    const onLocationNameChange = (e) => {
+        setLocationName(e);
+        console.log(locationName);
+    }
+
+    const onLocationNoteChange = (e) => {
+        setLocationNotes(e);
+        console.log(locationNotes);
+    }
 
     const addLocation = () => {
 
@@ -30,20 +42,18 @@ const NewLocation = () => {
             dateLocated,
             longitude,
             latitude,
-            approxAddress
+            // approxAddress,
+            locationName,
+            locationNotes
         }
 
         storeData(locationObject);
-        console.log('Test output: new location added!');
+        console.log(`LocationObject: ${locationObject}`);
     };
 
     useEffect(() => {
         setMarker([{ longitude, latitude }]);
     }, [longitude, latitude]);
-
-    // TODO: Need to implement map focus on new marker when onPress event is called. 
-    // see https://github.com/react-native-community/react-native-maps/blob/master/example/examples/FitToCoordinates.js
-    // for possible solution.
 
     return (
         <ScrollView style={styles.container}>
@@ -55,11 +65,25 @@ const NewLocation = () => {
 
             <Divider style={styles.divider} />
 
-            <ApproximateAddress approxAddress={approxAddress} />
+            {/* <ApproximateAddress approxAddress={approxAddress} /> */}
 
-            <Divider style={styles.divider} />
+            {/* <Divider style={styles.divider} /> */}
 
-            <LocationFormInputs />
+            <LocationFormInputs locationNameEvent={onLocationNameChange} locationNotesEvent={onLocationNoteChange} />
+
+            {/* <View style={styles.formInputWrapperFlexRow}>
+                <Icon name="map-marker-multiple" size={26} style={styles.iconForRightbutton}/>
+                <TextInput label='Location Name' style={styles.buttonForLeftIcon}
+                           onChangeText={val => onLocationNameChange(val)}/>
+            </View>
+
+            <View style={[styles.formInputWrapperFlexRow, styles.lastFlexRow]}>
+                <Icon name="note" size={26} style={styles.iconForRightbutton}/>
+                <TextInput label='Notes' multiline numberOfLines={6} style={styles.buttonForLeftIcon}
+                           onChangeText={val => onLocationNoteChange(val)} />
+            </View>
+
+            <Divider style={styles.divider} /> */}
 
             <Button raised primary mode='contained' icon='map-marker-plus' style={styles.submitButton}
                 onPress={addLocation}>Add New Location</Button>

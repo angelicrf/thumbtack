@@ -66,8 +66,8 @@ const Map = ({ markers, onPressEvent }) => {
                                 latitude: parseFloat(marker.latitude),
                                 longitude: parseFloat(marker.longitude)
                             }}
-                            title={marker._id}
-                            description={marker.approxAddress}
+                            title={marker.locationName}
+                            description={marker.locationNotes}
                         />
                     )) :
                     <Marker
