@@ -16,6 +16,8 @@ const Locations = ({ navigation }) => {
 
         let updatedMarkers;
 
+        // This prevents an infinite loop where, for some reason, the db keeps getting called and the map is unable to be moved.
+        // need to find a way to refresh the map when a new location is added.
         if (markers === null) {
             updatedMarkers = await db.find({}, function (err, docs) {
                 setMarkers(docs);
@@ -29,6 +31,9 @@ const Locations = ({ navigation }) => {
         getLocations();
         console.log("Markers: " + JSON.stringify(markers));
     }, [markers]);
+
+    //TODO: Add cards with saved locations information below map. Onclick card should highlight cooresponding marker.
+    // Edit Location can be called from card.
 
     return (
         <ScrollView style={styles.container}>
