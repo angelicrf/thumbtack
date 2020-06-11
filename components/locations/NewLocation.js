@@ -3,7 +3,8 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/global";
 import { Button, Divider } from 'react-native-paper';
 import CoordinateInfo from "./CoordinateInfo";
-import ApproximateAddress from "./ApproximateAddress";
+import Geolocation from 'react-native-geolocation-service';
+// import ApproximateAddress from "./ApproximateAddress";
 import LocationFormInputs from "./LocationFormInputs";
 import { storeData } from '../DataStorage';
 import Map from '../Map';
@@ -22,6 +23,24 @@ const NewLocation = () => {
         setLatitude(pE.nativeEvent.coordinate.latitude);
         console.log(`Longitude: ${longitude} Latitude: ${latitude}`)
         setMarker([{ longitude, latitude }]);
+    };
+
+    const getGeolocation = () => {
+        setDateLocated(new Date().toLocaleString());
+        Geolocation.getCurrentPosition(
+            (position) => {
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+            },
+            (error) => {
+                console.log(error.code, error.message);
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 10000
+            }
+        );
     };
 
     const onLocationNameChange = (e) => {
@@ -58,6 +77,10 @@ const NewLocation = () => {
 
             <Divider style={styles.divider} />
 
+            <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
+                onPress={getGeolocation}>Get My Coordinates
+            </Button>
+
             <CoordinateInfo dateLocated={dateLocated} longitude={longitude} latitude={latitude} />
 
             <Divider style={styles.divider} />
@@ -67,20 +90,6 @@ const NewLocation = () => {
             <Divider style={styles.divider} />
 
             <LocationFormInputs locationNameEvent={onLocationNameChange} locationNotesEvent={onLocationNoteChange} />
-
-            {/* <View style={styles.formInputWrapperFlexRow}>
-                <Icon name="map-marker-multiple" size={26} style={styles.iconForRightbutton}/>
-                <TextInput label='Location Name' style={styles.buttonForLeftIcon}
-                           onChangeText={val => onLocationNameChange(val)}/>
-            </View>
-
-            <View style={[styles.formInputWrapperFlexRow, styles.lastFlexRow]}>
-                <Icon name="note" size={26} style={styles.iconForRightbutton}/>
-                <TextInput label='Notes' multiline numberOfLines={6} style={styles.buttonForLeftIcon}
-                           onChangeText={val => onLocationNoteChange(val)} />
-            </View>
-
-            <Divider style={styles.divider} /> */}
 
             <Button raised primary mode='contained' icon='map-marker-plus' style={styles.submitButton}
                 onPress={addLocation}>Add New Location</Button>

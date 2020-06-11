@@ -4,7 +4,6 @@ import styles from "../styles/global";
 import { Button } from "react-native-paper";
 import Map from '../Map';
 import Datastore from '../../node_modules/react-native-local-mongodb'
-import { Marker } from "react-native-maps";
 
 const Locations = ({ navigation }) => {
     const [markers, setMarkers] = useState(null);
