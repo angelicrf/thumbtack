@@ -1,4 +1,4 @@
-import {Text, ScrollView} from "react-native";
+import {ScrollView} from "react-native";
 import React, {useState} from "react";
 import styles from "../styles/global";
 import LocationFormInputs from "./LocationFormInputs";
@@ -20,7 +20,7 @@ const EditLocation = ({locationId}) => {
 
     return (
         <ScrollView style={styles.container}>
-            <LocationFormInputs />
+            <LocationFormInputs/>
 
             <Divider style={styles.divider}/>
 

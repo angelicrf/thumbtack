@@ -1,4 +1,4 @@
-import React, {Fragment, useState, useEffect} from 'react';
+import React, {Fragment, useState} from 'react';
 import {Text} from "react-native";
 import styles from "../styles/global";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
