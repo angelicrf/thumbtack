@@ -65,25 +65,12 @@ const NewLocation = () => {
 
             <Divider style={styles.divider} />
 
+            {/* This is an optional feature that we may implement if time permits */}
             {/* <ApproximateAddress approxAddress={approxAddress} /> */}
 
             {/* <Divider style={styles.divider} /> */}
 
             <LocationFormInputs locationNameEvent={onLocationNameChange} locationNotesEvent={onLocationNoteChange} />
-
-            {/* <View style={styles.formInputWrapperFlexRow}>
-                <Icon name="map-marker-multiple" size={26} style={styles.iconForRightbutton}/>
-                <TextInput label='Location Name' style={styles.buttonForLeftIcon}
-                           onChangeText={val => onLocationNameChange(val)}/>
-            </View>
-
-            <View style={[styles.formInputWrapperFlexRow, styles.lastFlexRow]}>
-                <Icon name="note" size={26} style={styles.iconForRightbutton}/>
-                <TextInput label='Notes' multiline numberOfLines={6} style={styles.buttonForLeftIcon}
-                           onChangeText={val => onLocationNoteChange(val)} />
-            </View>
-
-            <Divider style={styles.divider} /> */}
 
             <Button raised primary mode='contained' icon='map-marker-plus' style={styles.submitButton}
                 onPress={addLocation}>Add New Location</Button>
