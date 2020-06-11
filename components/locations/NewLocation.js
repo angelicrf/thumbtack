@@ -3,6 +3,7 @@ import React, { useState, useEffect } from "react";
 import styles from "../styles/global";
 import { Button, Divider } from 'react-native-paper';
 import CoordinateInfo from "./CoordinateInfo";
+import Geolocation from 'react-native-geolocation-service';
 import ApproximateAddress from "./ApproximateAddress";
 import LocationFormInputs from "./LocationFormInputs";
 import { storeData } from '../DataStorage';
@@ -24,6 +25,24 @@ const NewLocation = () => {
         // setApproxAddress('New Location test Address');
         console.log(`Longitude: ${longitude} Latitude: ${latitude}`)
         setMarker([{ longitude, latitude }]);
+    };
+
+    const getGeolocation = () => {
+        setDateLocated(new Date().toLocaleString());
+        Geolocation.getCurrentPosition(
+            (position) => {
+                setLatitude(position.coords.latitude);
+                setLongitude(position.coords.longitude);
+            },
+            (error) => {
+                console.log(error.code, error.message);
+            },
+            {
+                enableHighAccuracy: true,
+                timeout: 10000,
+                maximumAge: 10000
+            }
+        );
     };
 
     const onLocationNameChange = (e) => {
@@ -58,6 +77,12 @@ const NewLocation = () => {
     return (
         <ScrollView style={styles.container}>
             <Map markers={marker} onPressEvent={e => getCoordinates(e)} ></Map>
+
+            <Divider style={styles.divider} />
+
+            <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
+                onPress={getGeolocation}>Get My Coordinates
+            </Button>
 
             <Divider style={styles.divider} />
 
