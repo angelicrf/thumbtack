@@ -12,7 +12,6 @@ const NewLocation = () => {
     const [dateLocated, setDateLocated] = useState('');
     const [longitude, setLongitude] = useState(-122.20000);
     const [latitude, setLatitude] = useState(+47.61670);
-    const [approxAddress, setApproxAddress] = useState('');
     const [locationName, setLocationName] = useState('');
     const [locationNotes, setLocationNotes] = useState('');
     const [marker, setMarker] = useState(null);
@@ -21,7 +20,6 @@ const NewLocation = () => {
         setDateLocated(new Date().toLocaleString());
         setLongitude(pE.nativeEvent.coordinate.longitude);
         setLatitude(pE.nativeEvent.coordinate.latitude);
-        // setApproxAddress('New Location test Address');
         console.log(`Longitude: ${longitude} Latitude: ${latitude}`)
         setMarker([{ longitude, latitude }]);
     };
@@ -42,7 +40,6 @@ const NewLocation = () => {
             dateLocated,
             longitude,
             latitude,
-            // approxAddress,
             locationName,
             locationNotes
         }
@@ -65,9 +62,9 @@ const NewLocation = () => {
 
             <Divider style={styles.divider} />
 
-            {/* <ApproximateAddress approxAddress={approxAddress} /> */}
+            <ApproximateAddress longitude={longitude} latitude={latitude} />
 
-            {/* <Divider style={styles.divider} /> */}
+            <Divider style={styles.divider} />
 
             <LocationFormInputs locationNameEvent={onLocationNameChange} locationNotesEvent={onLocationNoteChange} />
 
