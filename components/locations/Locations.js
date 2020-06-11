@@ -40,9 +40,7 @@ const Locations = ({ navigation }) => {
             <Button raised primary style={styles.formControl} onPress={() => navigation.navigate('EditLocation')}>Go to
             EditLocation.js
             </Button>
-
-            <Map markers={markers}>
-            </Map>
+            <Map markers={markers} />
         </ScrollView>
     );
 };

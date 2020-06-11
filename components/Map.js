@@ -7,7 +7,7 @@ import Geolocation from 'react-native-geolocation-service';
 import { getPermission } from "./Permission";
 //import { storeData } from './DataStorage';
 
-const Map = ({ markers, onPressEvent }) => {
+const Map = ({ markers, onPressEvent, regionEvent }) => {
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
@@ -44,6 +44,24 @@ const Map = ({ markers, onPressEvent }) => {
     getGeolocation();
     // storeData();
 
+    // const getRegion = () => {
+    //     let newRegion = {
+    //         latitude: latitude,
+    //         longitude: longitude,
+    //         latitudeDelta: 0.04,
+    //         longitudeDelta: 0.05,
+    //     };
+
+    //     if (regionEvent === null) {
+    //         return newRegion;
+    //     } else {
+    //         return regionEvent;
+    //     }
+    // }
+
+    // TODO: Setting the region in this component will cause the region to be reset in other components back to this
+    // component's original region which is being pulled from device's current location.
+
     return (
         <View style={styles.container1}>
             <View style={styles.container}>
@@ -70,15 +88,15 @@ const Map = ({ markers, onPressEvent }) => {
                             description={marker.locationNotes}
                         />
                     )) :
-                    <Marker
+                        <Marker
                             coordinate={{
                                 latitude: +47.61670,
                                 longitude: -122.20000
-                                        }}
+                            }}
                             title={"This isn't working"}
                             description={"category:You Messed up"}
                         />
-                     }
+                    }
                 </MapView>
             </View>
         </View>
