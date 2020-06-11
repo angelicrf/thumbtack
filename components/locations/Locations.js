@@ -4,9 +4,11 @@ import styles from "../styles/global";
 import { Button } from "react-native-paper";
 import Map from '../Map';
 import Datastore from '../../node_modules/react-native-local-mongodb'
+import UseForceUpdate from './UseForceUpdate';
 
 const Locations = ({ navigation }) => {
     const [markers, setMarkers] = useState(null);
+    const forceUpdate = UseForceUpdate();
 
     const getLocations = async () => {
         let db = new Datastore({
@@ -27,7 +29,10 @@ const Locations = ({ navigation }) => {
     }
 
     useEffect(() => {
+       
         getLocations();
+        const id = setInterval(forceUpdate, 16)
+        return () => clearInterval(id)
         console.log("Markers: " + JSON.stringify(markers));
     }, [markers]);
 
@@ -40,7 +45,9 @@ const Locations = ({ navigation }) => {
             <Button raised primary style={styles.formControl} onPress={() => navigation.navigate('EditLocation')}>Go to
             EditLocation.js
             </Button>
-            <Map markers={markers} />
+
+            <Map markers={markers}>
+            </Map>
         </ScrollView>
     );
 };
