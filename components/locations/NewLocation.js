@@ -48,17 +48,17 @@ const NewLocation = ({ navigation }) => {
 
     const onLocationNameChange = (e) => {
         setLocationName(e);
-        console.log(locationName);
+        // console.log(locationName);
     }
 
     const onLocationNoteChange = (e) => {
         setLocationNotes(e);
-        console.log(locationNotes);
+        // console.log(locationNotes);
     }
 
     const onAddressChage = (e) => {
         setAddress(e);
-        console.log(address);
+        // console.log(address);
     }
 
     const resetState = () => {
@@ -87,7 +87,7 @@ const NewLocation = ({ navigation }) => {
             address
         }
         storeData(locationObject);
-        resetState();
+        //resetState();
     };
 
     useEffect(() => {

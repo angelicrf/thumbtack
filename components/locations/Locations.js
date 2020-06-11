@@ -8,6 +8,7 @@ import UseForceUpdate from './UseForceUpdate';
 
 const Locations = ({ navigation }) => {
     const [markers, setMarkers] = useState(null);
+    const [newMarker, setNewMarker] = useState();
     const forceUpdate = UseForceUpdate();
 
     const getLocations = async () => {
@@ -22,6 +23,7 @@ const Locations = ({ navigation }) => {
         if (markers === null) {
             updatedMarkers = await db.find({}, function (err, docs) {
                 setMarkers(docs);
+                console.log("set markers");
             });
         }
 
@@ -33,7 +35,7 @@ const Locations = ({ navigation }) => {
         getLocations();
         const id = setInterval(forceUpdate, 16)
         return () => clearInterval(id)
-        console.log("Markers: " + JSON.stringify(markers));
+        //console.log("Markers: " + JSON.stringify(markers));
     }, [markers]);
 
     //TODO: Add cards with saved locations information below map. Onclick card should highlight cooresponding marker.
@@ -45,7 +47,6 @@ const Locations = ({ navigation }) => {
             <Button raised primary style={styles.formControl} onPress={() => navigation.navigate('EditLocation')}>Go to
             EditLocation.js
             </Button>
-
             <Map markers={markers}>
             </Map>
         </ScrollView>
