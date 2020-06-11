@@ -4,7 +4,7 @@ import styles from "../styles/global";
 import { Button, Divider } from 'react-native-paper';
 import CoordinateInfo from "./CoordinateInfo";
 import Geolocation from 'react-native-geolocation-service';
-import ApproximateAddress from "./ApproximateAddress";
+// import ApproximateAddress from "./ApproximateAddress";
 import LocationFormInputs from "./LocationFormInputs";
 import { storeData } from '../DataStorage';
 import Map from '../Map';
@@ -83,8 +83,6 @@ const NewLocation = () => {
             <Button raised primary mode='contained' icon='map-search' color='green' style={styles.formControl}
                 onPress={getGeolocation}>Get My Coordinates
             </Button>
-
-            <Divider style={styles.divider} />
 
             <CoordinateInfo dateLocated={dateLocated} longitude={longitude} latitude={latitude} />
 
