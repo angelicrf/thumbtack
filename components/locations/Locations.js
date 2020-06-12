@@ -4,11 +4,10 @@ import styles from "../styles/global";
 import { Button, Card, Title, Paragraph, Divider } from "react-native-paper";
 import Map from '../Map';
 import Datastore from '../../node_modules/react-native-local-mongodb'
-import UseForceUpdate from './UseForceUpdate';
 import Geolocation from 'react-native-geolocation-service';
 
 const Locations = ({ navigation }) => {
-    const [markers, setMarkers] = useState(null);
+    const [markers, setMarkers] = useState([]);
     const [newMarker, setNewMarker] = useState();
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
@@ -17,23 +16,18 @@ const Locations = ({ navigation }) => {
     const [name, setName] = useState('');
     const [notes, setNotes] = useState('');
     const [image, setImage] = useState('');
-    const forceUpdate = UseForceUpdate();
 
-    const getLocations = async () => {
+    const getLocationsAsync = async () => {
+        setMarkers([]);
+
         let db = new Datastore({
             filename: "../DataStore/locations.db", autoload: true
         });
 
-        let updatedMarkers;
-
-        // This prevents an infinite loop where, for some reason, the db keeps getting called and the map is unable to be moved.
-        // need to find a way to refresh the map when a new location is added.
-        if (markers === null) {
-            updatedMarkers = await db.find({}, function (err, docs) {
-                setMarkers(docs);
-                console.log("set markers");
-            });
-        }
+        let updatedMarkers = await db.findAsync({}, function (err, docs) {
+            setMarkers(docs);
+            console.log("set markers");
+        });
 
         return updatedMarkers;
     }
@@ -61,11 +55,13 @@ const Locations = ({ navigation }) => {
     };
 
     useEffect(() => {
-        
-        getLocations();
-        const id = setInterval(forceUpdate, 16)
-        return () => clearInterval(id)
-    }, [markers]);
+        const unsubscribe = navigation.addListener('focus', async () => {
+            console.log("inside unsub");
+            await getLocationsAsync();
+        });
+
+        return unsubscribe;
+    }, [navigation]);
 
     /* This is sort of a hack. In order to get the correct marker from the map it must compare with
        something inside the db of stored objects. Currently, I am only comparing the longitude of both 
