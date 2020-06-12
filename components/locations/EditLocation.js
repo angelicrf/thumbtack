@@ -6,7 +6,7 @@ import {Button, Divider} from "react-native-paper";
 import CoordinateInfo from "./CoordinateInfo";
 import ApproximateAddress from "./ApproximateAddress";
 
-const EditLocation = ({locationId}) => {
+const EditLocation = ({locationId, locationNameEvent}) => {
     const [dateLocated, setDateLocated] = useState('');
     const [longitude, setLongitude] = useState(0);
     const [latitude, setLatitude] = useState(0);

@@ -1,11 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { StyleSheet, View, Text, Button } from 'react-native';
-import Icon from 'react-native-vector-icons/dist/FontAwesome';
+import { StyleSheet, View } from 'react-native';
 import { PROVIDER_GOOGLE, Marker } from 'react-native-maps';
 import MapView from 'react-native-maps';
-import Geolocation from 'react-native-geolocation-service';
 import { getPermission } from "./Permission";
-//import { storeData } from './DataStorage';
 
 const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
     const [permissionGranted, setPermissionGranted] = useState(false);
@@ -25,36 +22,12 @@ const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
         }
     }, []);
 
-    // const getGeolocation = () => {
-    //     Geolocation.getCurrentPosition(
-    //         (position) => {
-    //             setLatitude(position.coords.latitude);
-    //             setLongitude(position.coords.longitude);
-    //         },
-    //         (error) => {
-    //             console.log(error.code, error.message);
-    //         },
-    //         {
-    //             enableHighAccuracy: true,
-    //             timeout: 10000,
-    //             maximumAge: 10000
-    //         }
-    //     );
-    // };
-    // getGeolocation();
-
     return (
         <View style={styles.container1}>
             <View style={styles.container}>
                 <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
-                    // region={{
-                    //     latitude: latitude,
-                    //     longitude: longitude,
-                    //     latitudeDelta: 0.04,
-                    //     longitudeDelta: 0.05,
-                    // }}
                     region={regionEvent}
                     onPress={onPressEvent}
                 >
@@ -68,7 +41,6 @@ const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
                             }}
                             title={marker.locationName}
                             description={marker.locationNotes}
-                            // onPress={recordEvent}
                             onPress={onPressMarker}
                         />
                     )) :
@@ -79,7 +51,6 @@ const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
                             }}
                             title={"This isn't working"}
                             description={"category:You Messed up"}
-                            // onSelect={recordEvent}
                         />
                     }
                 </MapView>
@@ -90,7 +61,6 @@ const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
 
 const styles = StyleSheet.create({
     container: {
-        //...StyleSheet.absoluteFillObject,
         height: 400,
         width: 400,
         justifyContent: 'flex-end',

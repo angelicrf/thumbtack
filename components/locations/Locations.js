@@ -1,7 +1,7 @@
-import { ScrollView, Text } from "react-native";
+import { ScrollView } from "react-native";
 import React, { useState, useEffect } from "react";
 import styles from "../styles/global";
-import { Avatar, Button, Card, Title, Paragraph, Divider } from "react-native-paper";
+import { Button, Card, Title, Paragraph, Divider } from "react-native-paper";
 import Map from '../Map';
 import Datastore from '../../node_modules/react-native-local-mongodb'
 import UseForceUpdate from './UseForceUpdate';
@@ -40,7 +40,6 @@ const Locations = ({ navigation }) => {
     
     const getGeolocation = () => {
         if(latitude === 0) {
-            console.log(`latitude: ${latitude}`)
             Geolocation.getCurrentPosition(
                 (position) => {
                     setRegionLatitude(position.coords.latitude);
@@ -67,7 +66,6 @@ const Locations = ({ navigation }) => {
         getLocations();
         const id = setInterval(forceUpdate, 16)
         return () => clearInterval(id)
-        //console.log("Markers: " + JSON.stringify(markers));
     }, [markers]);
 
     /* This is sort of a hack. In order to get the correct marker from the map it must compare with
@@ -77,7 +75,6 @@ const Locations = ({ navigation }) => {
     const findMarkerName = (currentMarkerLongitude, allMarkers) => {
         for (let item of allMarkers) {
             if (item.longitude === currentMarkerLongitude) {
-                console.log(item.locationName);
                 setNewMarker(item);
                 return item.locationName
             }
@@ -88,14 +85,12 @@ const Locations = ({ navigation }) => {
     const findMarkerNotes = (currentMarkerLongitude, allMarkers) => {
         for (let item of allMarkers) {
             if (item.longitude === currentMarkerLongitude) {
-                console.log(item.locationName);
                 return item.locationNotes
             }
         }
     }
 
     const recordEvent = (name) => {
-        console.log(`Name: ${JSON.stringify(name.nativeEvent)}`);
         // Currently image is random. Possible future feature is for users to save images of the locations they save.
         setImage(Math.floor(Math.random() * Math.floor(700)));
         setName(findMarkerName(name.nativeEvent.coordinate.longitude, markers));

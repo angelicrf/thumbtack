@@ -71,19 +71,17 @@ const NewLocation = ({ navigation }) => {
 
     const onLocationNameChange = (e) => {
         setLocationName(e);
-        // console.log(locationName);
     }
 
     const onLocationNoteChange = (e) => {
         setLocationNotes(e);
-        // console.log(locationNotes);
     }
 
     const onAddressChage = (e) => {
         setAddress(e);
-        // console.log(address);
     }
 
+    // Something wrong with this function. State does not complete setting before component navigates away.
     const resetState = () => {
         setDateLocated('');
         setLongitude(-122.20000);
@@ -92,15 +90,10 @@ const NewLocation = ({ navigation }) => {
         setLocationNotes('');
         setMarker(null);
         setAddress('')
-        // while(address != ''){
-        //     console.log('waiting');
-        // }
         navigation.navigate('Locations')
     }
 
-    // Approximate address not being saved because it is in a different component
     const addLocation = () => {
-
         let locationObject = {
             dateLocated,
             longitude,
@@ -110,7 +103,6 @@ const NewLocation = ({ navigation }) => {
             address
         }
         storeData(locationObject);
-        //resetState();
     };
 
     useEffect(() => {
