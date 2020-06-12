@@ -5,6 +5,11 @@ export default StyleSheet.create({
         marginVertical: 18,
         marginHorizontal: 14
     },
+    permissionsPrompt: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: '100%'
+    },
     textWrapperFlexRow: {
         flexDirection: 'row',
         marginBottom: 6
@@ -23,7 +28,7 @@ export default StyleSheet.create({
         flexDirection: 'row',
         marginBottom: 14
     },
-    iconForRightbutton: {
+    iconForRightButton: {
         marginTop: 20
     },
     buttonForLeftIcon: {

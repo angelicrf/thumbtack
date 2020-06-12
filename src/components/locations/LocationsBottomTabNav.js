@@ -1,8 +1,8 @@
 import React from "react";
 import Icon from "react-native-vector-icons/MaterialCommunityIcons";
 import {createMaterialBottomTabNavigator} from "@react-navigation/material-bottom-tabs";
-import Locations from "./Locations";
-import NewLocation from "./NewLocation";
+import Locations from "../screens/Locations";
+import NewLocation from "../screens/NewLocation";
 
 const LocationsBottomTabNav = () => {
     const nav = createMaterialBottomTabNavigator();
