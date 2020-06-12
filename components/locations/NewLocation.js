@@ -13,6 +13,8 @@ const NewLocation = ({ navigation }) => {
     const [dateLocated, setDateLocated] = useState('');
     const [longitude, setLongitude] = useState(-122.20000);
     const [latitude, setLatitude] = useState(+47.61670);
+    const [regionLatitude, setRegionLatitude] = useState(0);
+    const [regionLongitude, setRegionLongitude] = useState(0);
     const [locationName, setLocationName] = useState('');
     const [locationNotes, setLocationNotes] = useState('');
     const [address, setAddress] = useState('');
@@ -26,14 +28,35 @@ const NewLocation = ({ navigation }) => {
         setMarker([{ longitude, latitude }]);
     };
 
+    const getRegionGeolocation = () => {
+        if(latitude === +47.61670) {
+            console.log(`latitude: ${latitude}`)
+            Geolocation.getCurrentPosition(
+                (position) => {
+                    setRegionLatitude(position.coords.latitude);
+                    setRegionLongitude(position.coords.longitude);
+                },
+                (error) => {
+                    console.log(error.code, error.message);
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 10000
+                }
+            );
+            return {latitude: regionLatitude, longitude: regionLongitude, latitudeDelta: 0.04, longitudeDelta: 0.05,}
+        } else {
+            return { latitude: latitude, longitude: longitude, latitudeDelta: 0.04, longitudeDelta: 0.05}
+        }
+        
+    };
+
     const getGeolocation = () => {
-        setDateLocated(new Date().toLocaleString());
         Geolocation.getCurrentPosition(
             (position) => {
                 setLatitude(position.coords.latitude);
                 setLongitude(position.coords.longitude);
-                console.log(latitude);
-                console.log(longitude);
             },
             (error) => {
                 console.log(error.code, error.message);
@@ -99,12 +122,7 @@ const NewLocation = ({ navigation }) => {
             <Map
                 markers={marker}
                 onPressEvent={e => getCoordinates(e)}
-                region={{
-                    latitude: latitude,
-                    longitude: longitude,
-                    latitudeDelta: 0.04,
-                    longitudeDelta: 0.05,
-                }}
+                regionEvent={getRegionGeolocation()}
             ></Map>
 
             <Divider style={styles.divider} />

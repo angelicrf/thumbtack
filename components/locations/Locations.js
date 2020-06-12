@@ -5,13 +5,15 @@ import { Avatar, Button, Card, Title, Paragraph, Divider } from "react-native-pa
 import Map from '../Map';
 import Datastore from '../../node_modules/react-native-local-mongodb'
 import UseForceUpdate from './UseForceUpdate';
+import Geolocation from 'react-native-geolocation-service';
 
 const Locations = ({ navigation }) => {
     const [markers, setMarkers] = useState(null);
     const [newMarker, setNewMarker] = useState();
-    const [state, setState] = useState('empty');
-    const [latitude, setLatitude] = useState('');
-    const [longitude, setLongitude] = useState('');
+    const [latitude, setLatitude] = useState(0);
+    const [longitude, setLongitude] = useState(0);
+    const [regionLatitude, setRegionLatitude] = useState(0);
+    const [regionLongitude, setRegionLongitude] = useState(0);
     const [name, setName] = useState('');
     const [notes, setNotes] = useState('');
     const [image, setImage] = useState('');
@@ -35,9 +37,33 @@ const Locations = ({ navigation }) => {
 
         return updatedMarkers;
     }
+    
+    const getGeolocation = () => {
+        if(latitude === 0) {
+            console.log(`latitude: ${latitude}`)
+            Geolocation.getCurrentPosition(
+                (position) => {
+                    setRegionLatitude(position.coords.latitude);
+                    setRegionLongitude(position.coords.longitude);
+                },
+                (error) => {
+                    console.log(error.code, error.message);
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 10000
+                }
+            );
+            return {latitude: regionLatitude, longitude: regionLongitude, latitudeDelta: 0.04, longitudeDelta: 0.05,}
+        } else {
+            return { latitude: latitude, longitude: longitude, latitudeDelta: 0.04, longitudeDelta: 0.05}
+        }
+        
+    };
 
     useEffect(() => {
-
+        
         getLocations();
         const id = setInterval(forceUpdate, 16)
         return () => clearInterval(id)
@@ -52,6 +78,7 @@ const Locations = ({ navigation }) => {
         for (let item of allMarkers) {
             if (item.longitude === currentMarkerLongitude) {
                 console.log(item.locationName);
+                setNewMarker(item);
                 return item.locationName
             }
         }
@@ -76,13 +103,10 @@ const Locations = ({ navigation }) => {
         setLongitude(name.nativeEvent.coordinate.longitude);
         setNotes(findMarkerNotes(name.nativeEvent.coordinate.longitude, markers));
     }
-
+    
     return (
         <ScrollView style={styles.container}>
-            <Button raised primary style={styles.formControl} onPress={() => navigation.navigate('EditLocation')}>Go to
-            EditLocation.js
-            </Button>
-            <Map markers={markers} onPressMarker={recordEvent} />
+            <Map markers={markers} onPressMarker={recordEvent} regionEvent={getGeolocation()} />
             <Divider style={styles.divider} />
             {name === '' ? null :
                 <Card>
@@ -93,8 +117,8 @@ const Locations = ({ navigation }) => {
                     <Card.Cover source={{ uri: 'https://picsum.photos/' + image }} />
                     <Card.Actions>
                         <Button raised primary style={styles.formControl} onPress={() => navigation.navigate('EditLocation')}>
-                            EDIT
-                    </Button>
+                            EDIT LOCATION
+                        </Button>
                     </Card.Actions>
                 </Card>}
         </ScrollView>

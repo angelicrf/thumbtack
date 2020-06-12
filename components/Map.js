@@ -25,46 +25,23 @@ const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
         }
     }, []);
 
-    const getGeolocation = () => {
-        Geolocation.getCurrentPosition(
-            (position) => {
-                setLatitude(position.coords.latitude);
-                setLongitude(position.coords.longitude);
-            },
-            (error) => {
-                console.log(error.code, error.message);
-            },
-            {
-                enableHighAccuracy: true,
-                timeout: 10000,
-                maximumAge: 10000
-            }
-        );
-    };
-    getGeolocation();
-
-    // const recordEvent = (name) => {
-    //     console.log('Name: ' + name);
-    //   }
-    // storeData();
-
-    // const getRegion = () => {
-    //     let newRegion = {
-    //         latitude: latitude,
-    //         longitude: longitude,
-    //         latitudeDelta: 0.04,
-    //         longitudeDelta: 0.05,
-    //     };
-
-    //     if (regionEvent === null) {
-    //         return newRegion;
-    //     } else {
-    //         return regionEvent;
-    //     }
-    // }
-
-    // TODO: Setting the region in this component will cause the region to be reset in other components back to this
-    // component's original region which is being pulled from device's current location.
+    // const getGeolocation = () => {
+    //     Geolocation.getCurrentPosition(
+    //         (position) => {
+    //             setLatitude(position.coords.latitude);
+    //             setLongitude(position.coords.longitude);
+    //         },
+    //         (error) => {
+    //             console.log(error.code, error.message);
+    //         },
+    //         {
+    //             enableHighAccuracy: true,
+    //             timeout: 10000,
+    //             maximumAge: 10000
+    //         }
+    //     );
+    // };
+    // getGeolocation();
 
     return (
         <View style={styles.container1}>
@@ -72,12 +49,13 @@ const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
                 <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
-                    region={{
-                        latitude: latitude,
-                        longitude: longitude,
-                        latitudeDelta: 0.04,
-                        longitudeDelta: 0.05,
-                    }}
+                    // region={{
+                    //     latitude: latitude,
+                    //     longitude: longitude,
+                    //     latitudeDelta: 0.04,
+                    //     longitudeDelta: 0.05,
+                    // }}
+                    region={regionEvent}
                     onPress={onPressEvent}
                 >
                     {markers != null ? markers.map((marker, i) => (
