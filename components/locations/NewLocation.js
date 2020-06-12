@@ -6,7 +6,7 @@ import CoordinateInfo from "./CoordinateInfo";
 import Geolocation from 'react-native-geolocation-service';
 import ApproximateAddress from "./ApproximateAddress";
 import LocationFormInputs from "./LocationFormInputs";
-import { storeData } from '../DataStorage';
+import { storeDataAsync } from '../DataStorage';
 import Map from '../Map';
 
 const NewLocation = ({ navigation }) => {
@@ -102,7 +102,10 @@ const NewLocation = ({ navigation }) => {
             locationNotes,
             address
         }
-        storeData(locationObject);
+
+        storeDataAsync(locationObject).then(() => {
+            navigation.navigate('Locations');
+        });
     };
 
     useEffect(() => {
