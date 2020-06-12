@@ -52,7 +52,6 @@ const Locations = ({ navigation }) => {
         } else {
             return { latitude: latitude, longitude: longitude, latitudeDelta: 0.04, longitudeDelta: 0.05}
         }
-        
     };
 
     useEffect(() => {
