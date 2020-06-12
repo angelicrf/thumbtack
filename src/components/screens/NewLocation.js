@@ -16,7 +16,7 @@ const NewLocation = ({navigation}) => {
     const [snackbarAction, setSnackbarAction] = useState(null);
     const [dateLocated, setDateLocated] = useState('');
     const [longitude, setLongitude] = useState(0);
-    const [latitude, setLatitude] = useState(0); // +47.61670
+    const [latitude, setLatitude] = useState(0);
     const [regionLatitude, setRegionLatitude] = useState(0);
     const [regionLongitude, setRegionLongitude] = useState(0);
     const [locationName, setLocationName] = useState('');
@@ -111,6 +111,21 @@ const NewLocation = ({navigation}) => {
 
                 // Insert new location.
                 LocationService.addAsync(new Location(locationName, locationNotes, longitude, latitude, dateLocated, approxAddress)).then(() => {
+                    // Reset this screen.
+                    setSnackbarVisible(false);
+                    setSnackbarText('Input error.');
+                    setSnackbarAction(null);
+                    setDateLocated('');
+                    setLongitude(0);
+                    setLatitude(0);
+                    setRegionLatitude(0);
+                    setRegionLongitude(0);
+                    setLocationName('');
+                    setLocationNotes('');
+                    setApproxAddress('');
+                    setMarker(null);
+
+                    // Finally, go back to the Locations screen.
                     navigation.navigate({name: 'Locations'});
                 });
             }
@@ -151,7 +166,7 @@ const NewLocation = ({navigation}) => {
 
             <Divider style={styles.divider}/>
 
-            <LocationFormInputs locationNameEvent={onLocationNameChange} locationNotesEvent={onLocationNoteChange}/>
+            <LocationFormInputs name={locationName} notes={locationNotes} locationNameEvent={onLocationNameChange} locationNotesEvent={onLocationNoteChange}/>
 
             <Button raised primary mode='contained' icon='map-marker-plus' style={styles.submitButton}
                     onPress={addLocation}>Add Location</Button>
