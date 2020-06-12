@@ -7,7 +7,7 @@ import Geolocation from 'react-native-geolocation-service';
 import { getPermission } from "./Permission";
 //import { storeData } from './DataStorage';
 
-const Map = ({ markers, onPressEvent, regionEvent }) => {
+const Map = ({ markers, onPressEvent, regionEvent, onPressMarker }) => {
     const [permissionGranted, setPermissionGranted] = useState(false);
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
@@ -42,6 +42,10 @@ const Map = ({ markers, onPressEvent, regionEvent }) => {
         );
     };
     getGeolocation();
+
+    // const recordEvent = (name) => {
+    //     console.log('Name: ' + name);
+    //   }
     // storeData();
 
     // const getRegion = () => {
@@ -86,6 +90,8 @@ const Map = ({ markers, onPressEvent, regionEvent }) => {
                             }}
                             title={marker.locationName}
                             description={marker.locationNotes}
+                            // onPress={recordEvent}
+                            onPress={onPressMarker}
                         />
                     )) :
                         <Marker
@@ -95,6 +101,7 @@ const Map = ({ markers, onPressEvent, regionEvent }) => {
                             }}
                             title={"This isn't working"}
                             description={"category:You Messed up"}
+                            // onSelect={recordEvent}
                         />
                     }
                 </MapView>
