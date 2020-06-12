@@ -8,12 +8,14 @@ import {Provider as PaperProvider} from 'react-native-paper';
 import {name as appName} from './app.json';
 import React from "react";
 import {NavigationContainer} from '@react-navigation/native';
-import LocationsBottomTabNav from "./components/locations/LocationsBottomTabNav";
+import LocationsBottomTabNav from "./src/components/locations/LocationsBottomTabNav";
 import {createStackNavigator} from "@react-navigation/stack";
-import EditLocation from "./components/locations/EditLocation";
+import EditLocation from "./src/components/screens/EditLocation";
+import PermissionsPrompt from "./src/components/screens/PermissionsPrompt";
 
 YellowBox.ignoreWarnings([
-    "Require cycle:"
+    "Require cycle:",
+    'AsyncStorage has been extracted from react-native core'
 ])
 
 export default function Main() {
@@ -23,8 +25,12 @@ export default function Main() {
         <NavigationContainer>
             <PaperProvider>
                 <stack.Navigator>
-                    <stack.Screen name="Locations" options={{ title: 'Thumbtack' }} component={LocationsBottomTabNav}/>
-                    <stack.Screen name="EditLocation" options={{ title: 'Edit Location' }} component={EditLocation}/>
+                    <stack.Screen name="Locations" options={{title: 'Thumbtack'}}
+                                  component={LocationsBottomTabNav}/>
+                    <stack.Screen name="EditLocation" options={{title: 'Edit Location'}} component={EditLocation}/>
+
+                    <stack.Screen name="PermissionsPrompt" options={{title: 'Thumbtack', headerLeft: null}}
+                                  component={PermissionsPrompt}/>
                 </stack.Navigator>
             </PaperProvider>
         </NavigationContainer>
