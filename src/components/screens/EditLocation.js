@@ -74,8 +74,8 @@ const EditLocation = ({navigation, route}) => {
 
             <ApproximateAddress approxAddress={approxAddress}/>
 
-            <Button raised primary mode='contained' icon='map-marker-plus' style={styles.submitButton}
-                    onPress={saveLocation}>Update Location</Button>
+            <Button raised primary mode='contained' icon='map-marker-check' style={styles.submitButton}
+                    onPress={saveLocation}>Save Location</Button>
             <Button raised color={'red'} mode='contained' icon='map-marker-minus' style={styles.submitButton}
                     onPress={deleteLocation}>Delete Location</Button>
 
