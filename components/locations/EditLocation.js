@@ -18,6 +18,10 @@ const EditLocation = ({locationId, locationNameEvent}) => {
         console.log('Test output: location saved!');
     };
 
+    const deleteLocation = () => {
+        console.log('Location Deleted');
+    }
+
     return (
         <ScrollView style={styles.container}>
             <LocationFormInputs/>
@@ -31,7 +35,9 @@ const EditLocation = ({locationId, locationNameEvent}) => {
             <ApproximateAddress longitude={longitude} latitude={latitude}/>
 
             <Button raised primary mode='contained' icon='map-marker-plus' style={styles.submitButton}
-                    onPress={saveLocation}>Save Location</Button>
+                    onPress={saveLocation}>Update Location</Button>
+            <Button raised color={'red'} mode='contained' icon='map-marker-minus' style={styles.submitButton}
+                    onPress={deleteLocation}>Delete Location</Button>
         </ScrollView>
     );
 };
