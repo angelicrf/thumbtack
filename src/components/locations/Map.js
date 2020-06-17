@@ -30,11 +30,11 @@ const Map = ({longitude, latitude, markers, onPressEvent, onPressMarker}) => {
     };
 
     return (
-        <View style={styles.container1}>
-            <View style={styles.container}>
+        <View style={mapStyles.wrapper}>
+            <View style={mapStyles.container}>
                 <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
-                    style={styles.map}
+                    style={mapStyles.map}
                     region={getRegionGeolocation()}
                     onPress={onPressEvent}
                 >
@@ -66,7 +66,10 @@ const Map = ({longitude, latitude, markers, onPressEvent, onPressMarker}) => {
     );
 };
 
-const styles = StyleSheet.create({
+const mapStyles = StyleSheet.create({
+    wrapper: {
+        flex: 1,
+    },
     container: {
         height: 400,
         width: 400,
@@ -75,9 +78,6 @@ const styles = StyleSheet.create({
     },
     map: {
         ...StyleSheet.absoluteFillObject,
-    },
-    container1: {
-        flex: 1,
     },
     homeName: {
         flexDirection: 'row',
