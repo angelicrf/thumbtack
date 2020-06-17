@@ -75,6 +75,15 @@ const NewLocation = ({navigation}) => {
             } else {
                 // Create new location.
 
+                // Check if coordinates not set yet.
+                if (marker === null) {
+                    setSnackbarText('Please select a location or get your coordinates.');
+                    setSnackbarAction({label: 'Dismiss', onPress: () => setSnackbarVisible(false)});
+                    setSnackbarVisible(true);
+
+                    return;
+                }
+
                 // Location Name is required.
                 if (locationName === '') {
                     setSnackbarText('Location Name is required.');
