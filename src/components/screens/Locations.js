@@ -1,7 +1,7 @@
 import {PermissionsAndroid, ScrollView} from "react-native";
 import React, {useEffect, useLayoutEffect, useState} from "react";
 import styles from "../styles/global";
-import {Button, Card, Divider, Paragraph, Title, Text} from "react-native-paper";
+import {Button, Card, Divider, Paragraph, Text, Title} from "react-native-paper";
 import Map from '../locations/Map';
 import LocationService from "../../services/LocationService";
 
