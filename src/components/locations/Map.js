@@ -1,10 +1,33 @@
 import React, {useState} from 'react';
 import {StyleSheet, View} from 'react-native';
 import MapView, {Marker, PROVIDER_GOOGLE} from 'react-native-maps';
+import Geolocation from "react-native-geolocation-service";
 
-const Map = ({markers, onPressEvent, regionEvent, onPressMarker}) => {
-    const [latitude, setLatitude] = useState(0);
-    const [longitude, setLongitude] = useState(0);
+const Map = ({longitude, latitude, markers, onPressEvent, onPressMarker}) => {
+    const [regionLatitude, setRegionLatitude] = useState(0);
+    const [regionLongitude, setRegionLongitude] = useState(0);
+
+    const getRegionGeolocation = () => {
+        if (longitude === 0 || latitude === 0) {
+            Geolocation.getCurrentPosition(
+                (position) => {
+                    setRegionLatitude(position.coords.latitude);
+                    setRegionLongitude(position.coords.longitude);
+                },
+                (error) => {
+                    console.log(error.code, error.message);
+                },
+                {
+                    enableHighAccuracy: true,
+                    timeout: 10000,
+                    maximumAge: 10000
+                }
+            );
+            return {latitude: regionLatitude, longitude: regionLongitude, latitudeDelta: 0.04, longitudeDelta: 0.05,}
+        } else {
+            return {latitude: latitude, longitude: longitude, latitudeDelta: 0.04, longitudeDelta: 0.05}
+        }
+    };
 
     return (
         <View style={styles.container1}>
@@ -12,7 +35,7 @@ const Map = ({markers, onPressEvent, regionEvent, onPressMarker}) => {
                 <MapView
                     provider={PROVIDER_GOOGLE} // remove if not using Google Maps
                     style={styles.map}
-                    region={regionEvent}
+                    region={getRegionGeolocation()}
                     onPress={onPressEvent}
                 >
                     {markers != null ? markers.map((marker, i) => (
@@ -23,8 +46,8 @@ const Map = ({markers, onPressEvent, regionEvent, onPressMarker}) => {
                                     latitude: parseFloat(marker.latitude),
                                     longitude: parseFloat(marker.longitude)
                                 }}
-                                title={marker.locationName}
-                                description={marker.locationNotes}
+                                title={marker.name}
+                                description={marker.notes}
                                 onPress={onPressMarker}
                             />
                         )) :

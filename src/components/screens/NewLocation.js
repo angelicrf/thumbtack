@@ -17,8 +17,6 @@ const NewLocation = ({navigation}) => {
     const [dateLocated, setDateLocated] = useState('');
     const [longitude, setLongitude] = useState(0);
     const [latitude, setLatitude] = useState(0);
-    const [regionLatitude, setRegionLatitude] = useState(0);
-    const [regionLongitude, setRegionLongitude] = useState(0);
     const [locationName, setLocationName] = useState('');
     const [locationNotes, setLocationNotes] = useState('');
     const [approxAddress, setApproxAddress] = useState('');
@@ -29,29 +27,6 @@ const NewLocation = ({navigation}) => {
         setLongitude(pE.nativeEvent.coordinate.longitude);
         setLatitude(pE.nativeEvent.coordinate.latitude);
         setMarker([{longitude, latitude}]);
-    };
-
-    const getRegionGeolocation = () => {
-        if (latitude === 0) {
-            Geolocation.getCurrentPosition(
-                (position) => {
-                    setRegionLatitude(position.coords.latitude);
-                    setRegionLongitude(position.coords.longitude);
-                },
-                (error) => {
-                    console.log(error.code, error.message);
-                },
-                {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 10000
-                }
-            );
-            return {latitude: regionLatitude, longitude: regionLongitude, latitudeDelta: 0.04, longitudeDelta: 0.05,}
-        } else {
-            return {latitude: latitude, longitude: longitude, latitudeDelta: 0.04, longitudeDelta: 0.05}
-        }
-
     };
 
     const getGeolocation = () => {
@@ -118,8 +93,6 @@ const NewLocation = ({navigation}) => {
                     setDateLocated('');
                     setLongitude(0);
                     setLatitude(0);
-                    setRegionLatitude(0);
-                    setRegionLongitude(0);
                     setLocationName('');
                     setLocationNotes('');
                     setApproxAddress('');
@@ -139,9 +112,10 @@ const NewLocation = ({navigation}) => {
     return (
         <ScrollView style={styles.container}>
             <Map
+                longitude={longitude}
+                latitude={latitude}
                 markers={marker}
                 onPressEvent={e => getCoordinates(e)}
-                regionEvent={getRegionGeolocation()}
             />
 
             <Divider style={styles.divider}/>

@@ -1,17 +1,14 @@
 import {PermissionsAndroid, ScrollView} from "react-native";
 import React, {useEffect, useLayoutEffect, useState} from "react";
 import styles from "../styles/global";
-import {Button, Card, Divider, Paragraph, Title} from "react-native-paper";
+import {Button, Card, Divider, Paragraph, Title, Text} from "react-native-paper";
 import Map from '../locations/Map';
-import Geolocation from 'react-native-geolocation-service';
 import LocationService from "../../services/LocationService";
 
-const Locations = ({navigation, route}) => {
+const Locations = ({navigation}) => {
     const [markers, setMarkers] = useState([]);
     const [latitude, setLatitude] = useState(0);
     const [longitude, setLongitude] = useState(0);
-    const [regionLatitude, setRegionLatitude] = useState(0);
-    const [regionLongitude, setRegionLongitude] = useState(0);
     const [name, setName] = useState('');
     const [notes, setNotes] = useState('');
     const [selectedLocationId, setSelectedLocationId] = useState(null);
@@ -24,28 +21,6 @@ const Locations = ({navigation, route}) => {
                 setMarkers(locations);
         }).catch((err) => console.log(err));
     }
-
-    const getGeolocation = () => {
-        if (latitude === 0) {
-            Geolocation.getCurrentPosition(
-                (position) => {
-                    setRegionLatitude(position.coords.latitude);
-                    setRegionLongitude(position.coords.longitude);
-                },
-                (error) => {
-                    console.log(error.code, error.message);
-                },
-                {
-                    enableHighAccuracy: true,
-                    timeout: 10000,
-                    maximumAge: 10000
-                }
-            );
-            return {latitude: regionLatitude, longitude: regionLongitude, latitudeDelta: 0.04, longitudeDelta: 0.05,}
-        } else {
-            return {latitude: latitude, longitude: longitude, latitudeDelta: 0.04, longitudeDelta: 0.05}
-        }
-    };
 
     const markerClickEvent = (marker) => {
         getSelectedLocation(marker._dispatchInstances.memoizedProps.identifier);
@@ -85,27 +60,30 @@ const Locations = ({navigation, route}) => {
     }, [navigation]);
 
     useEffect(() => {
-        const unsubscribe = navigation.addListener('focus', () => {
+        return navigation.addListener('focus', () => {
             clearSelectedLocation();
             getLocations();
         });
-
-        return unsubscribe;
     }, []);
 
     return (
         <ScrollView style={styles.container}>
             <Map
+                longitude={longitude}
+                latitude={latitude}
                 markers={markers}
-                onPressEvent={(e) => {
+                onPressEvent={() => {
                     // Clear selected location when deselecting a marker.
                     clearSelectedLocation();
                 }}
                 onPressMarker={markerClickEvent}
-                regionEvent={getGeolocation()}
             />
             <Divider style={styles.divider}/>
-            {selectedLocationId !== null ? (
+            {markers.length === 0 ? (
+                <Text>Record your first location in the New Location tab.</Text>
+            ) : (selectedLocationId === null ? (
+                <Text>Select a marker to view a saved location.</Text>
+            ) : (
                 <Card>
                     <Card.Content>
                         <Title>{name}</Title>
@@ -118,7 +96,7 @@ const Locations = ({navigation, route}) => {
                         </Button>
                     </Card.Actions>
                 </Card>
-            ) : null}
+            ))}
         </ScrollView>
     );
 };
